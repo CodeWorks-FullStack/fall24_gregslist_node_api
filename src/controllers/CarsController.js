@@ -22,6 +22,9 @@ export class CarsController extends BaseController {
 
   async getCars(request, response, next) {
     try {
+      // pulls all query parameters out of the URL and formats them as an object
+      // ex request URL: GET http://localhost:3000/api.cars?make=Mazda
+      // ex request.query: {make: 'Mazda'}
       const query = request.query
       const cars = await carsService.getCars(query)
       response.send(cars)

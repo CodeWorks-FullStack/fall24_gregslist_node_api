@@ -30,9 +30,11 @@ export const CarSchema = new Schema(
   }
 )
 
+// NOTE creates a virtual property on this schema that exists outside of the database
+// NOTE the name of the virtual is 'creator'. To run this virtual, you call the populate method in your service and supply the name of the virtual as the argument
 CarSchema.virtual('creator', {
-  localField: 'creatorId',
-  foreignField: '_id',
-  ref: 'Account',
-  justOne: true
+  localField: 'creatorId', // use my car's creatorId
+  foreignField: '_id', // match my creatorId to an _id
+  ref: 'Account', // look for this match in the Account collection
+  justOne: true // return a single object
 })
